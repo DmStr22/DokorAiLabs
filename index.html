@@ -220,6 +220,29 @@
                 font-size: 1em;
             }
         }
+
+        .footer {
+            position: relative;
+            z-index: 1;
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85em;
+            line-height: 1.6;
+            max-width: 1400px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: rgba(255, 255, 255, 1);
+        }
     </style>
 </head>
 <body>
@@ -254,6 +277,10 @@
             <span class="dot" onclick="goToSlide(1)"></span>
             <span class="dot" onclick="goToSlide(2)"></span>
         </div>
+    </div>
+
+    <div class="footer">
+        Founder & CEO: Aleix Pérez Argelich · Status: Research & Development (R&D) / Proof of Concept (PoC) · Operational Entity: DokorAl Services, SL (For-Profit) · Sector: Causal AI R&D / Model Alignment Architecture
     </div>
 
     <script>
