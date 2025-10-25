@@ -208,17 +208,18 @@
         @media (max-width: 768px) {
             body {
                 padding: 10px;
-                padding-bottom: 120px;
+                padding-bottom: 100px;
                 justify-content: flex-start;
             }
 
             .header {
-                margin-bottom: 20px;
-                margin-top: 20px;
+                margin-bottom: 15px;
+                margin-top: 10px;
             }
 
             .header h1 {
                 font-size: 2em;
+                margin-bottom: 5px;
             }
             
             .header p {
@@ -231,8 +232,8 @@
             }
 
             .slide {
-                min-height: 600px;
-                padding: 10px;
+                min-height: 800px;
+                padding: 5px;
             }
 
             .slide img {
@@ -253,12 +254,12 @@
             }
 
             .carousel-controls {
-                margin-top: 20px;
+                margin-top: 15px;
                 gap: 12px;
             }
 
             .carousel-dots {
-                margin-top: 20px;
+                margin-top: 15px;
             }
 
             .dot {
@@ -268,8 +269,8 @@
 
             .footer {
                 font-size: 0.75em;
-                padding: 20px 10px;
-                margin-top: 30px;
+                padding: 15px 10px;
+                margin-top: 20px;
                 margin-bottom: 80px;
                 line-height: 2;
             }
@@ -277,7 +278,7 @@
 
         @media (max-width: 480px) {
             body {
-                padding-bottom: 140px;
+                padding-bottom: 120px;
             }
 
             .header h1 {
@@ -289,7 +290,7 @@
             }
 
             .slide {
-                min-height: 700px;
+                min-height: 900px;
             }
 
             .carousel-btn {
@@ -379,7 +380,7 @@
 
         <div class="carousel-controls">
             <button class="carousel-btn" onclick="prevSlide()">‹</button>
-            <button class="carousel-btn pause-btn" id="pauseBtn" onclick="toggleAutoplay()">⏸</button>
+            <button class="carousel-btn pause-btn" id="pauseBtn" onclick="toggleAutoplay()">❚❚</button>
             <button class="carousel-btn" onclick="nextSlide()">›</button>
         </div>
 
@@ -434,7 +435,7 @@
                 isPlaying = false;
             } else {
                 startAutoplay();
-                pauseBtn.textContent = '⏸';
+                pauseBtn.textContent = '❚❚';
                 isPlaying = true;
             }
         }
