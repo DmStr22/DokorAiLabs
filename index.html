@@ -132,6 +132,7 @@
         .carousel-controls {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 15px;
             margin-top: 30px;
         }
@@ -160,6 +161,12 @@
             transform: scale(1.15);
             border-color: rgba(255, 255, 255, 0.6);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .pause-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
         }
 
         .carousel-dots {
@@ -229,6 +236,7 @@
 
         <div class="carousel-controls">
             <button class="carousel-btn" onclick="prevSlide()">‹</button>
+            <button class="carousel-btn pause-btn" id="pauseBtn" onclick="toggleAutoplay()">⏸</button>
             <button class="carousel-btn" onclick="nextSlide()">›</button>
         </div>
 
@@ -242,6 +250,8 @@
     <script>
         let currentSlide = 0;
         const totalSlides = 3;
+        let autoplayInterval;
+        let isPlaying = true;
 
         function updateCarousel() {
             const slides = document.getElementById('slides');
@@ -268,8 +278,25 @@
             updateCarousel();
         }
 
-        // Auto-advance slides every 5 seconds
-        setInterval(nextSlide, 5000);
+        function toggleAutoplay() {
+            const pauseBtn = document.getElementById('pauseBtn');
+            if (isPlaying) {
+                clearInterval(autoplayInterval);
+                pauseBtn.textContent = '▶';
+                isPlaying = false;
+            } else {
+                startAutoplay();
+                pauseBtn.textContent = '⏸';
+                isPlaying = true;
+            }
+        }
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(nextSlide, 10000);
+        }
+
+        // Start autoplay on load (every 10 seconds)
+        startAutoplay();
     </script>
 </body>
 </html>
