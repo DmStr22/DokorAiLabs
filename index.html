@@ -113,7 +113,7 @@
 
         .slide {
             min-width: 100%;
-            padding: 80px 50px;
+            padding: 40px 50px;
             text-align: center;
             color: white;
             min-height: 400px;
@@ -123,18 +123,14 @@
             align-items: center;
         }
 
-        .slide h2 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            color: #fff;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-        }
-
-        .slide p {
-            font-size: 1.3em;
-            line-height: 1.8;
-            opacity: 0.95;
-            max-width: 800px;
+        .slide img {
+            max-width: 100%;
+            max-height: 500px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
         }
 
         .carousel-controls {
@@ -224,16 +220,13 @@
         <div class="carousel">
             <div class="carousel-slides" id="slides">
                 <div class="slide">
-                    <h2>Diapositiva 1</h2>
-                    <p>Contenido de la primera diapositiva. Aquí puedes agregar tu texto personalizado.</p>
+                    <img src="1.png" alt="Diapositiva 1">
                 </div>
                 <div class="slide">
-                    <h2>Diapositiva 2</h2>
-                    <p>Contenido de la segunda diapositiva. Reemplaza este texto con tu contenido.</p>
+                    <img src="2.png" alt="Diapositiva 2">
                 </div>
                 <div class="slide">
-                    <h2>Diapositiva 3</h2>
-                    <p>Contenido de la tercera diapositiva. Personaliza este espacio según tus necesidades.</p>
+                    <img src="3.png" alt="Diapositiva 3">
                 </div>
             </div>
         </div>
