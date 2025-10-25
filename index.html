@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DokorAI Labs</title>
+    <title>DokorAI Labs - Causalistic AI for a causal world</title>
     <style>
         * {
             margin: 0;
@@ -204,20 +204,93 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                margin-bottom: 20px;
+            }
+
             .header h1 {
-                font-size: 2.5em;
+                font-size: 2em;
             }
             
             .header p {
-                font-size: 1.2em;
+                font-size: 1em;
             }
 
-            .slide h2 {
+            .carousel-container {
+                padding: 5px;
+                width: 100%;
+            }
+
+            .slide {
+                min-height: 400px;
+                padding: 5px;
+            }
+
+            .slide img {
+                width: 100%;
+            }
+
+            .carousel-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+
+            .pause-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .carousel-controls {
+                margin-top: 15px;
+                gap: 10px;
+            }
+
+            .carousel-dots {
+                margin-top: 15px;
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px;
+            }
+
+            .footer {
+                font-size: 0.7em;
+                padding: 15px 10px;
+                margin-top: 20px;
+                line-height: 1.8;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
                 font-size: 1.5em;
             }
+            
+            .header p {
+                font-size: 0.9em;
+            }
 
-            .slide p {
-                font-size: 1em;
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .pause-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+
+            .footer {
+                font-size: 0.65em;
             }
         }
 
@@ -248,7 +321,7 @@
 <body>
     <div class="header">
         <h1>DokorAI Labs</h1>
-        <p>Designing the Future of Reliable AI</p>
+        <p>Causalistic AI for a causal world</p>
     </div>
 
     <div class="carousel-container">
