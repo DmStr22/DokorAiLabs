@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DokorAI Labs - Causalistic AI for a causal world</title>
+    <title>DokorAI Labs</title>
     <style>
         * {
             margin: 0;
@@ -360,20 +360,20 @@
 <body>
     <div class="header">
         <h1>DokorAI Labs</h1>
-        <p>Causalistic AI for a causal world</p>
+        <p>Designing the Future of Reliable AI</p>
     </div>
 
     <div class="carousel-container">
         <div class="carousel">
             <div class="carousel-slides" id="slides">
                 <div class="slide">
-                    <img src="1.png" alt="Diapositiva 1">
+                    <img id="img1" src="1.png" alt="Diapositiva 1">
                 </div>
                 <div class="slide">
-                    <img src="2.png" alt="Diapositiva 2">
+                    <img id="img2" src="2.png" alt="Diapositiva 2">
                 </div>
                 <div class="slide">
-                    <img src="3.png" alt="Diapositiva 3">
+                    <img id="img3" src="3.png" alt="Diapositiva 3">
                 </div>
             </div>
         </div>
@@ -401,6 +401,24 @@
         const totalSlides = 3;
         let autoplayInterval;
         let isPlaying = true;
+
+        // Función para detectar si es móvil en vertical
+        function isMobilePortrait() {
+            return window.innerWidth <= 768 && window.innerHeight > window.innerWidth;
+        }
+
+        // Función para actualizar las imágenes según la orientación
+        function updateImages() {
+            const isMobile = isMobilePortrait();
+            const suffix = isMobile ? '-mobile' : '';
+            
+            for (let i = 1; i <= 3; i++) {
+                const img = document.getElementById(`img${i}`);
+                if (img) {
+                    img.src = `${i}${suffix}.png`;
+                }
+            }
+        }
 
         function updateCarousel() {
             const slides = document.getElementById('slides');
@@ -444,7 +462,12 @@
             autoplayInterval = setInterval(nextSlide, 10000);
         }
 
-        // Start autoplay on load (every 10 seconds)
+        // Detectar cambios de orientación o tamaño de ventana
+        window.addEventListener('resize', updateImages);
+        window.addEventListener('orientationchange', updateImages);
+
+        // Inicializar
+        updateImages();
         startAutoplay();
     </script>
 </body>
