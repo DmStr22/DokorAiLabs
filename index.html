@@ -20,7 +20,6 @@
             align-items: center;
             justify-content: flex-start;
             padding: 20px;
-            padding-top: 70px;
             padding-bottom: 100px;
             position: relative;
             overflow-x: hidden;
@@ -76,11 +75,14 @@
             color: white;
             margin-bottom: 40px;
             position: relative;
+            width: 100%;
+            max-width: 1800px;
+            margin-top: 20px;
         }
 
         .language-selector {
-            position: fixed;
-            top: 20px;
+            position: absolute;
+            top: 0;
             right: 20px;
             z-index: 1000;
         }
@@ -104,6 +106,10 @@
             gap: 8px;
             min-width: 100px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .lang-text {
+            display: inline;
         }
 
         .lang-current:hover {
@@ -303,7 +309,6 @@
         @media (max-width: 768px) {
             body {
                 padding: 5px;
-                padding-top: 60px;
                 padding-bottom: 100px;
                 justify-content: flex-start;
                 gap: 0;
@@ -311,26 +316,36 @@
 
             .header {
                 margin-bottom: 0;
-                margin-top: 5px;
+                margin-top: 10px;
             }
 
             .language-selector {
-                top: 10px;
-                right: 10px;
+                top: 0;
+                right: 5px;
             }
 
             .lang-current {
-                padding: 8px 12px;
+                padding: 8px;
                 font-size: 0.85em;
-                min-width: 90px;
+                min-width: auto;
+                gap: 0;
+            }
+
+            .lang-text {
+                display: none;
+            }
+
+            .lang-arrow {
+                display: none;
             }
 
             .lang-flag {
-                font-size: 1.1em;
+                font-size: 1.4em;
             }
 
             .lang-options {
                 min-width: 120px;
+                right: 0;
             }
 
             .lang-option {
