@@ -123,6 +123,13 @@
             font-size: 1.3em;
         }
 
+        .lang-flag-img {
+            width: 1.3em;
+            height: 1.3em;
+            object-fit: contain;
+            vertical-align: middle;
+        }
+
         .lang-arrow {
             margin-left: auto;
             transition: transform 0.3s ease;
@@ -343,6 +350,11 @@
                 font-size: 1.4em;
             }
 
+            .lang-flag-img {
+                width: 1.4em;
+                height: 1.4em;
+            }
+
             .lang-options {
                 min-width: 120px;
                 right: 0;
@@ -537,7 +549,7 @@
         <div class="lang-dropdown" id="langDropdown">
             <div class="lang-current" onclick="toggleLanguageMenu()">
                 <span class="lang-flag" id="currentFlag">🇬🇧</span>
-                <span id="currentLang">English</span>
+                <span class="lang-text" id="currentLang">English</span>
                 <span class="lang-arrow">▼</span>
             </div>
             <div class="lang-options">
@@ -550,7 +562,7 @@
                     <span>Español</span>
                 </div>
                 <div class="lang-option" onclick="changeLanguage('ca')">
-                    <span class="lang-flag">🇪🇸</span>
+                    <span class="lang-flag"><img src="https://em-content.zobj.net/source/openmoji/292/flag-for-catalonia-esct_1f3f4-e0065-e0073-e0063-e0074-e007f.png" class="lang-flag-img" alt="Català"></span>
                     <span>Català</span>
                 </div>
             </div>
@@ -604,9 +616,9 @@
 
         // Información de idiomas
         const languageInfo = {
-            en: { name: 'English', flag: '🇬🇧' },
-            es: { name: 'Español', flag: '🇪🇸' },
-            ca: { name: 'Català', flag: '🇪🇸' }
+            en: { name: 'English', flag: '🇬🇧', isEmoji: true },
+            es: { name: 'Español', flag: '🇪🇸', isEmoji: true },
+            ca: { name: 'Català', flag: 'https://em-content.zobj.net/source/openmoji/292/flag-for-catalonia-esct_1f3f4-e0065-e0073-e0063-e0074-e007f.png', isEmoji: false }
         };
 
         // Traducciones
@@ -655,7 +667,12 @@
             currentLanguage = lang;
             
             // Actualizar selector actual
-            document.getElementById('currentFlag').textContent = languageInfo[lang].flag;
+            const flagElement = document.getElementById('currentFlag');
+            if (languageInfo[lang].isEmoji) {
+                flagElement.innerHTML = languageInfo[lang].flag;
+            } else {
+                flagElement.innerHTML = `<img src="${languageInfo[lang].flag}" class="lang-flag-img" alt="${languageInfo[lang].name}">`;
+            }
             document.getElementById('currentLang').textContent = languageInfo[lang].name;
             
             // Actualizar textos
