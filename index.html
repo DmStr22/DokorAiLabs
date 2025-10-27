@@ -732,23 +732,23 @@
 
         // Inicializar
         window.addEventListener('DOMContentLoaded', function() {
-            // Siempre iniciar en inglés
-            const defaultLang = 'en';
-            currentLanguage = defaultLang;
+            // Cargar idioma guardado o usar inglés por defecto
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            currentLanguage = savedLang;
             
             // Actualizar selector
-            document.getElementById('currentFlag').textContent = languageInfo[defaultLang].flag;
-            document.getElementById('currentLang').textContent = languageInfo[defaultLang].name;
+            document.getElementById('currentFlag').textContent = languageInfo[savedLang].flag;
+            document.getElementById('currentLang').textContent = languageInfo[savedLang].name;
             
             // Aplicar idioma inicial
-            document.getElementById('title').textContent = translations[defaultLang].title;
-            document.getElementById('slogan').textContent = translations[defaultLang].slogan;
-            document.getElementById('footer').innerHTML = translations[defaultLang].footer;
+            document.getElementById('title').textContent = translations[savedLang].title;
+            document.getElementById('slogan').textContent = translations[savedLang].slogan;
+            document.getElementById('footer').innerHTML = translations[savedLang].footer;
             
             // Marcar opción activa
             document.querySelectorAll('.lang-option').forEach((option, index) => {
                 const langs = ['en', 'es', 'ca'];
-                option.classList.toggle('active', langs[index] === defaultLang);
+                option.classList.toggle('active', langs[index] === savedLang);
             });
             
             updateImages();
