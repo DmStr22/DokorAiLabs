@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DokorAI Labs</title>
+    <title>DokorAI Labs - Causalistic AI for a causal world</title>
     <style>
         * {
             margin: 0;
@@ -20,6 +20,7 @@
             align-items: center;
             justify-content: flex-start;
             padding: 20px;
+            padding-top: 70px;
             padding-bottom: 100px;
             position: relative;
             overflow-x: hidden;
@@ -74,6 +75,98 @@
             text-align: center;
             color: white;
             margin-bottom: 40px;
+            position: relative;
+        }
+
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-dropdown {
+            position: relative;
+        }
+
+        .lang-current {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 100px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .lang-current:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .lang-flag {
+            font-size: 1.3em;
+        }
+
+        .lang-arrow {
+            margin-left: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .lang-dropdown.open .lang-arrow {
+            transform: rotate(180deg);
+        }
+
+        .lang-options {
+            position: absolute;
+            top: calc(100% + 5px);
+            right: 0;
+            background: rgba(15, 32, 39, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            min-width: 140px;
+        }
+
+        .lang-dropdown.open .lang-options {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 0.95em;
+        }
+
+        .lang-option:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .lang-option.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid rgba(255, 255, 255, 0.8);
         }
 
         .header h1 {
@@ -210,6 +303,7 @@
         @media (max-width: 768px) {
             body {
                 padding: 5px;
+                padding-top: 60px;
                 padding-bottom: 100px;
                 justify-content: flex-start;
                 gap: 0;
@@ -217,7 +311,31 @@
 
             .header {
                 margin-bottom: 0;
-                margin-top: 10px;
+                margin-top: 5px;
+            }
+
+            .language-selector {
+                top: 10px;
+                right: 10px;
+            }
+
+            .lang-current {
+                padding: 8px 12px;
+                font-size: 0.85em;
+                min-width: 90px;
+            }
+
+            .lang-flag {
+                font-size: 1.1em;
+            }
+
+            .lang-options {
+                min-width: 120px;
+            }
+
+            .lang-option {
+                padding: 10px 12px;
+                font-size: 0.85em;
             }
 
             .header h1 {
@@ -400,9 +518,33 @@
     </style>
 </head>
 <body>
+    <div class="language-selector">
+        <div class="lang-dropdown" id="langDropdown">
+            <div class="lang-current" onclick="toggleLanguageMenu()">
+                <span class="lang-flag" id="currentFlag">🇬🇧</span>
+                <span id="currentLang">English</span>
+                <span class="lang-arrow">▼</span>
+            </div>
+            <div class="lang-options">
+                <div class="lang-option" onclick="changeLanguage('en')">
+                    <span class="lang-flag">🇬🇧</span>
+                    <span>English</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('es')">
+                    <span class="lang-flag">🇪🇸</span>
+                    <span>Español</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ca')">
+                    <span class="lang-flag">🇪🇸</span>
+                    <span>Català</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="header">
-        <h1>DokorAI Labs</h1>
-        <p>Designing the Future of Reliable AI</p>
+        <h1 id="title">DokorAI Labs</h1>
+        <p id="slogan">Causalistic AI for a causal world</p>
     </div>
 
     <div class="carousel-container">
@@ -433,7 +575,7 @@
         </div>
     </div>
 
-    <div class="footer">
+    <div class="footer" id="footer">
         Founder & CEO: Aleix Pérez Argelich · Status: Research & Development (R&D) / Proof of Concept (PoC) · Operational Entity: DokorAl Services, SL (For-Profit) · Sector: Causal AI R&D / Model Alignment Architecture<br>
         Contact: <a href="mailto:dokorailabs@proton.me">dokorailabs@proton.me</a>
     </div>
@@ -443,21 +585,107 @@
         const totalSlides = 3;
         let autoplayInterval;
         let isPlaying = true;
+        let currentLanguage = 'en';
+
+        // Información de idiomas
+        const languageInfo = {
+            en: { name: 'English', flag: '🇬🇧' },
+            es: { name: 'Español', flag: '🇪🇸' },
+            ca: { name: 'Català', flag: '🇪🇸' }
+        };
+
+        // Traducciones
+        const translations = {
+            en: {
+                title: "DokorAI Labs",
+                slogan: "Causalistic AI for a causal world",
+                footer: "Founder & CEO: Aleix Pérez Argelich · Status: Research & Development (R&D) / Proof of Concept (PoC) · Operational Entity: DokorAl Services, SL (For-Profit) · Sector: Causal AI R&D / Model Alignment Architecture<br>Contact: <a href='mailto:dokorailabs@proton.me'>dokorailabs@proton.me</a>"
+            },
+            es: {
+                title: "DokorAI Labs",
+                slogan: "IA Causalista para un mundo causal",
+                footer: "Fundador y CEO: Aleix Pérez Argelich · Estado: Investigación y Desarrollo (I+D) / Prueba de Concepto (PoC) · Entidad Operativa: DokorAl Services, SL (Con Ánimo de Lucro) · Sector: I+D en IA Causal / Arquitectura de Alineación de Modelos<br>Contacto: <a href='mailto:dokorailabs@proton.me'>dokorailabs@proton.me</a>"
+            },
+            ca: {
+                title: "DokorAI Labs",
+                slogan: "IA Causalista per a un món causal",
+                footer: "Fundador i CEO: Aleix Pérez Argelich · Estat: Recerca i Desenvolupament (R&D) / Prova de Concepte (PoC) · Entitat Operativa: DokorAl Services, SL (Amb Ànim de Lucre) · Sector: R&D en IA Causal / Arquitectura d'Alineació de Models<br>Contacte: <a href='mailto:dokorailabs@proton.me'>dokorailabs@proton.me</a>"
+            }
+        };
+
+        // Toggle menú de idiomas
+        function toggleLanguageMenu() {
+            const dropdown = document.getElementById('langDropdown');
+            dropdown.classList.toggle('open');
+        }
+
+        // Cerrar menú al hacer clic fuera
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('langDropdown');
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('open');
+            }
+        });
+
+        // Detectar idioma del navegador
+        function detectBrowserLanguage() {
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang.startsWith('es')) return 'es';
+            if (browserLang.startsWith('ca')) return 'ca';
+            return 'en';
+        }
+
+        // Cambiar idioma
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Actualizar selector actual
+            document.getElementById('currentFlag').textContent = languageInfo[lang].flag;
+            document.getElementById('currentLang').textContent = languageInfo[lang].name;
+            
+            // Actualizar textos
+            document.getElementById('title').textContent = translations[lang].title;
+            document.getElementById('slogan').textContent = translations[lang].slogan;
+            document.getElementById('footer').innerHTML = translations[lang].footer;
+            
+            // Actualizar opciones activas
+            document.querySelectorAll('.lang-option').forEach((option, index) => {
+                const langs = ['en', 'es', 'ca'];
+                option.classList.toggle('active', langs[index] === lang);
+            });
+            
+            // Cerrar menú
+            document.getElementById('langDropdown').classList.remove('open');
+            
+            // Actualizar imágenes
+            updateImages();
+            
+            // Guardar preferencia
+            localStorage.setItem('preferredLanguage', lang);
+        }
 
         // Función para detectar si es móvil en vertical
         function isMobilePortrait() {
             return window.innerWidth <= 768 && window.innerHeight > window.innerWidth;
         }
 
-        // Función para actualizar las imágenes según la orientación
+        // Función para actualizar las imágenes según la orientación e idioma
         function updateImages() {
             const isMobile = isMobilePortrait();
-            const suffix = isMobile ? '-mobile' : '';
+            const mobileSuffix = isMobile ? '-mobile' : '';
+            const langSuffix = currentLanguage === 'en' ? '' : `-${currentLanguage}`;
             
             for (let i = 1; i <= 3; i++) {
                 const img = document.getElementById(`img${i}`);
                 if (img) {
-                    img.src = `${i}${suffix}.png`;
+                    const imagePath = `${i}${langSuffix}${mobileSuffix}.png`;
+                    img.src = imagePath;
+                    
+                    img.onerror = function() {
+                        if (langSuffix !== '') {
+                            this.src = `${i}${mobileSuffix}.png`;
+                        }
+                    };
                 }
             }
         }
@@ -509,8 +737,29 @@
         window.addEventListener('orientationchange', updateImages);
 
         // Inicializar
-        updateImages();
-        startAutoplay();
+        window.addEventListener('DOMContentLoaded', function() {
+            // Siempre iniciar en inglés
+            const defaultLang = 'en';
+            currentLanguage = defaultLang;
+            
+            // Actualizar selector
+            document.getElementById('currentFlag').textContent = languageInfo[defaultLang].flag;
+            document.getElementById('currentLang').textContent = languageInfo[defaultLang].name;
+            
+            // Aplicar idioma inicial
+            document.getElementById('title').textContent = translations[defaultLang].title;
+            document.getElementById('slogan').textContent = translations[defaultLang].slogan;
+            document.getElementById('footer').innerHTML = translations[defaultLang].footer;
+            
+            // Marcar opción activa
+            document.querySelectorAll('.lang-option').forEach((option, index) => {
+                const langs = ['en', 'es', 'ca'];
+                option.classList.toggle('active', langs[index] === defaultLang);
+            });
+            
+            updateImages();
+            startAutoplay();
+        });
     </script>
 </body>
 </html>
