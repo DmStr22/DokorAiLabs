@@ -673,19 +673,13 @@
         function updateImages() {
             const isMobile = isMobilePortrait();
             const mobileSuffix = isMobile ? '-mobile' : '';
-            const langSuffix = currentLanguage === 'en' ? '' : `-${currentLanguage}`;
+            const langSuffix = `-${currentLanguage}`;
             
             for (let i = 1; i <= 3; i++) {
                 const img = document.getElementById(`img${i}`);
                 if (img) {
                     const imagePath = `${i}${langSuffix}${mobileSuffix}.png`;
                     img.src = imagePath;
-                    
-                    img.onerror = function() {
-                        if (langSuffix !== '') {
-                            this.src = `${i}${mobileSuffix}.png`;
-                        }
-                    };
                 }
             }
         }
