@@ -685,7 +685,6 @@
             
             // Actualizar selector actual (solo bandera)
             document.getElementById('currentFlag').innerHTML = `<img src="${languageInfo[lang].flag}" class="lang-flag-img" alt="${languageInfo[lang].name}">`;
-            document.getElementById('currentLang').textContent = languageInfo[lang].name;
             
             // Actualizar textos
             document.getElementById('title').textContent = translations[lang].title;
@@ -782,7 +781,6 @@
             
             // Actualizar selector (solo bandera)
             document.getElementById('currentFlag').innerHTML = `<img src="${languageInfo[savedLang].flag}" class="lang-flag-img" alt="${languageInfo[savedLang].name}">`;
-            document.getElementById('currentLang').textContent = languageInfo[savedLang].name;
             
             // Aplicar idioma inicial
             document.getElementById('title').textContent = translations[savedLang].title;
@@ -801,4 +799,5 @@
     </script>
 </body>
 </html>
+
 
