@@ -721,8 +721,10 @@
             for (let i = 1; i <= 3; i++) {
                 const img = document.getElementById(`img${i}`);
                 if (img) {
-                    const imagePath = `${i}${langSuffix}${mobileSuffix}.png`;
-                    img.src = imagePath;
+                const cacheBuster = `?v=${Date.now()}`; 
+                const imagePath = `${i}${langSuffix}${mobileSuffix}.png${cacheBuster}`;
+                img.src = imagePath;
+
                 }
             }
         }
@@ -799,5 +801,6 @@
     </script>
 </body>
 </html>
+
 
 
