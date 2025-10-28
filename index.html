@@ -131,8 +131,9 @@
         }
 
         .lang-arrow {
-            margin-left: auto;
+            margin-left: 0;
             transition: transform 0.3s ease;
+            font-size: 0.8em;
         }
 
         .lang-dropdown.open .lang-arrow {
@@ -168,9 +169,14 @@
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             color: white;
             font-size: 0.95em;
+        }
+
+        .lang-option .lang-flag-img {
+            width: 1.8em;
+            height: 1.2em;
         }
 
         .lang-option:hover {
@@ -335,24 +341,16 @@
                 padding: 8px;
                 font-size: 0.85em;
                 min-width: auto;
-                gap: 0;
-            }
-
-            .lang-text {
-                display: none;
-            }
-
-            .lang-arrow {
-                display: none;
-            }
-
-            .lang-flag {
-                font-size: 1.4em;
+                gap: 5px;
             }
 
             .lang-flag-img {
-                width: 1.4em;
-                height: 1.4em;
+                width: 1.8em;
+                height: 1.2em;
+            }
+
+            .lang-arrow {
+                font-size: 0.7em;
             }
 
             .lang-options {
@@ -363,6 +361,12 @@
             .lang-option {
                 padding: 10px 12px;
                 font-size: 0.85em;
+                gap: 10px;
+            }
+
+            .lang-option .lang-flag-img {
+                width: 1.6em;
+                height: 1.1em;
             }
 
             .header h1 {
@@ -548,21 +552,23 @@
     <div class="language-selector">
         <div class="lang-dropdown" id="langDropdown">
             <div class="lang-current" onclick="toggleLanguageMenu()">
-                <span class="lang-flag" id="currentFlag">🇬🇧</span>
+                <span class="lang-flag" id="currentFlag">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg" class="lang-flag-img" alt="English">
+                </span>
                 <span class="lang-text" id="currentLang">English</span>
                 <span class="lang-arrow">▼</span>
             </div>
             <div class="lang-options">
                 <div class="lang-option" onclick="changeLanguage('en')">
-                    <span class="lang-flag">🇬🇧</span>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg" class="lang-flag-img" alt="English">
                     <span>English</span>
                 </div>
                 <div class="lang-option" onclick="changeLanguage('es')">
-                    <span class="lang-flag">🇪🇸</span>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Bandera_de_España.svg" class="lang-flag-img" alt="Español">
                     <span>Español</span>
                 </div>
                 <div class="lang-option" onclick="changeLanguage('ca')">
-                    <span class="lang-flag"><img src="https://em-content.zobj.net/source/openmoji/292/flag-for-catalonia-esct_1f3f4-e0065-e0073-e0063-e0074-e007f.png" class="lang-flag-img" alt="Català"></span>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Catalonia.svg" class="lang-flag-img" alt="Català">
                     <span>Català</span>
                 </div>
             </div>
@@ -616,9 +622,18 @@
 
         // Información de idiomas
         const languageInfo = {
-            en: { name: 'English', flag: '🇬🇧', isEmoji: true },
-            es: { name: 'Español', flag: '🇪🇸', isEmoji: true },
-            ca: { name: 'Català', flag: 'https://em-content.zobj.net/source/openmoji/292/flag-for-catalonia-esct_1f3f4-e0065-e0073-e0063-e0074-e007f.png', isEmoji: false }
+            en: { 
+                name: 'English', 
+                flag: 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg'
+            },
+            es: { 
+                name: 'Español', 
+                flag: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Bandera_de_España.svg'
+            },
+            ca: { 
+                name: 'Català', 
+                flag: 'https://upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Catalonia.svg'
+            }
         };
 
         // Traducciones
@@ -666,13 +681,8 @@
         function changeLanguage(lang) {
             currentLanguage = lang;
             
-            // Actualizar selector actual
-            const flagElement = document.getElementById('currentFlag');
-            if (languageInfo[lang].isEmoji) {
-                flagElement.innerHTML = languageInfo[lang].flag;
-            } else {
-                flagElement.innerHTML = `<img src="${languageInfo[lang].flag}" class="lang-flag-img" alt="${languageInfo[lang].name}">`;
-            }
+            // Actualizar selector actual (solo bandera)
+            document.getElementById('currentFlag').innerHTML = `<img src="${languageInfo[lang].flag}" class="lang-flag-img" alt="${languageInfo[lang].name}">`;
             document.getElementById('currentLang').textContent = languageInfo[lang].name;
             
             // Actualizar textos
@@ -768,8 +778,8 @@
             const savedLang = localStorage.getItem('preferredLanguage') || 'en';
             currentLanguage = savedLang;
             
-            // Actualizar selector
-            document.getElementById('currentFlag').textContent = languageInfo[savedLang].flag;
+            // Actualizar selector (solo bandera)
+            document.getElementById('currentFlag').innerHTML = `<img src="${languageInfo[savedLang].flag}" class="lang-flag-img" alt="${languageInfo[savedLang].name}">`;
             document.getElementById('currentLang').textContent = languageInfo[savedLang].name;
             
             // Aplicar idioma inicial
