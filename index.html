@@ -681,35 +681,37 @@
 
         // Cambiar idioma
         function changeLanguage(lang) {
+            // 1️⃣ Actualiza primero la variable global
             currentLanguage = lang;
-            
-            // Actualizar selector actual (solo bandera)
-            document.getElementById('currentFlag').innerHTML = `<img src="${languageInfo[lang].flag}" class="lang-flag-img" alt="${languageInfo[lang].name}">`;
-            
-            // Actualizar textos
+        
+            // 2️⃣ Actualiza la bandera
+            document.getElementById('currentFlag').innerHTML =
+                `<img src="${languageInfo[lang].flag}" class="lang-flag-img" alt="${languageInfo[lang].name}">`;
+        
+            // 3️⃣ Actualiza textos
             document.getElementById('title').textContent = translations[lang].title;
             document.getElementById('slogan').textContent = translations[lang].slogan;
             document.getElementById('footer').innerHTML = translations[lang].footer;
-            
-            // Actualizar opciones activas
+        
+            // 4️⃣ Marca opción activa
             document.querySelectorAll('.lang-option').forEach((option, index) => {
                 const langs = ['en', 'es', 'ca'];
                 option.classList.toggle('active', langs[index] === lang);
             });
-            
-            // Cerrar menú
+        
+            // 5️⃣ Cierra el menú
             document.getElementById('langDropdown').classList.remove('open');
-            
-            // Actualizar imágenes
+        
+            // 6️⃣ Actualiza imágenes (ahora con idioma correcto)
             updateImages();
-            
-            // Guardar preferencia
-            localStorage.setItem('preferredLanguage', lang);
-
-            // Actualizar carrousel
+        
+            // 7️⃣ Refresca el carrusel inmediatamente
             updateCarousel();
-
+        
+            // 8️⃣ Guarda preferencia
+            localStorage.setItem('preferredLanguage', lang);
         }
+
 
         // Función para detectar si es móvil en vertical
         function isMobilePortrait() {
@@ -805,6 +807,7 @@
     </script>
 </body>
 </html>
+
 
 
 
