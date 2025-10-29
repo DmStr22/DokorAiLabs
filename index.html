@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DokorAI Labs - Causalistic AI for a causal world</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="language-selector">
+        <div class="lang-dropdown" id="langDropdown">
+            <div class="lang-current" onclick="toggleLanguageMenu()">
+                <span id="currentFlag">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg" class="lang-flag-img">
+                </span>
+                <span class="lang-arrow">▼</span>
+            </div>
+            <div class="lang-options">
+                <div class="lang-option" onclick="changeLanguage('en')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg" class="lang-flag-img">
+                    <span>English</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('es')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Bandera_de_España.svg" class="lang-flag-img">
+                    <span>Español</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ca')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Catalonia.svg" class="lang-flag-img">
+                    <span>Català</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header">
+        <h1 id="title">DokorAI Labs</h1>
+        <p id="slogan">Causalistic AI for a causal world</p>
+    </div>
+
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="carousel-slides" id="slides">
+                <div class="slide">
+                    <img id="img1" src="1-en.png">
+                </div>
+                <div class="slide">
+                    <img id="img2" src="2-en.png">
+                </div>
+                <div class="slide">
+                    <img id="img3" src="3-en.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <button class="carousel-btn" onclick="prevSlide()">‹</button>
+            <button class="carousel-btn pause-btn" id="pauseBtn" onclick="toggleAutoplay()">❚❚</button>
+            <button class="carousel-btn" onclick="nextSlide()">›</button>
+        </div>
+
+        <div class="carousel-dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+        </div>
+    </div>
+
+    <div class="footer" id="footer">
+        Founder & CEO: Aleix Pérez Argelich · Status: Research & Development (R&D) / Proof of Concept (PoC) · Operational Entity: DokorAl Services, SL (For-Profit) · Sector: Causal AI R&D / Model Alignment Architecture<br>
+        Contact: <a href="mailto:dokorailabs@proton.me">dokorailabs@proton.me</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
