@@ -56,8 +56,7 @@ function changeLanguage(lang) {
     });
     
     document.getElementById('langDropdown').classList.remove('open');
-    updateImages();
-    updateCarousel();
+    updateImagesInstant();
     localStorage.setItem('preferredLanguage', lang);
 }
 
@@ -65,7 +64,7 @@ function isMobilePortrait() {
     return window.innerWidth <= 768 && window.innerHeight > window.innerWidth;
 }
 
-function updateImages() {
+function updateImagesInstant() {
     const isMobile = isMobilePortrait();
     const mobileSuffix = isMobile ? '-mobile' : '';
     const langSuffix = `-${currentLanguage}`;
@@ -73,9 +72,21 @@ function updateImages() {
     for (let i = 1; i <= 3; i++) {
         const img = document.getElementById(`img${i}`);
         if (img) {
-            const cacheBuster = `?v=${Date.now()}`; 
-            const imagePath = `${i}${langSuffix}${mobileSuffix}.png${cacheBuster}`;
-            img.src = imagePath;
+            img.src = `${i}${langSuffix}${mobileSuffix}.png`;
+        }
+    }
+}
+
+function updateImages() {
+    const isMobile = isMobilePortrait();
+    const mobileSuffix = isMobile ? '-mobile' : '';
+    const langSuffix = `-${currentLanguage}`;
+    const cacheBuster = `?v=${Date.now()}`; 
+    
+    for (let i = 1; i <= 3; i++) {
+        const img = document.getElementById(`img${i}`);
+        if (img) {
+            img.src = `${i}${langSuffix}${mobileSuffix}.png${cacheBuster}`;
         }
     }
 }
@@ -138,6 +149,6 @@ window.addEventListener('DOMContentLoaded', function() {
         option.classList.toggle('active', langs[index] === savedLang);
     });
     
-    updateImages();
+    updateImagesInstant();
     startAutoplay();
 });
